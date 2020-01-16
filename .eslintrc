@@ -1,0 +1,45 @@
+{
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react"
+    ],
+    "rules": {
+        "react/destructuring-assignment": [
+            "off",
+            "never"
+        ],
+        "global-require": [
+            "off"
+        ],
+        "import/no-extraneous-dependencies": [
+            "off",
+            {
+                "devDependencies": false,
+                "optionalDependencies": false,
+                "peerDependencies": false
+            }
+        ],
+        "import/no-unresolved": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "singleQuote": true,
+                "printWidth": 100
+            }
+        ]
+    },
+    "plugins": [
+        "prettier"
+    ]
+}
