@@ -5,6 +5,9 @@
         "prettier/react"
     ],
     "rules": {
+        "react/jsx-props-no-spreading": [
+            "off"
+        ],
         "react/destructuring-assignment": [
             "off",
             "never"
