@@ -53,7 +53,12 @@ const AppScr = () => {
 const AppStack = createStackNavigator({ Home: HomeScr, Other: OtherScr });
 const AuthStack = createStackNavigator(
   {
-    Welcome: WelcomeScr,
+    Welcome: {
+      screen: WelcomeScr,
+      navigationOptions: () => ({
+        headerShown: false,
+      }),
+    },
     Register: {
       screen: RegisterScr,
       navigationOptions: () => ({
@@ -97,9 +102,9 @@ const AuthStack = createStackNavigator(
   },
   {
     initialRouteName: 'Welcome',
-    headerMode: 'float',
     defaultNavigationOptions: {
       headerTitleStyle: {},
+      headerShown: false,
     },
   }
 );

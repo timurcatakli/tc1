@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30,
     justifyContent: 'flex-end',
-    alignItems: 'center',
   },
   form: { width: '100%', paddingLeft: 20, paddingRight: 30 },
 });
@@ -65,39 +64,42 @@ const ActivationScr = () => {
                 return (
                   <>
                     <GoBack goBack={goBack} />
-                    <View style={styles.body}>
-                      <View style={styles.content}>
+                    <View style={styles.paddedContent}>
+                      <View style={styles.divider20} />
+                      <View>
                         <H3 style={styles.h1}>Confirm your email</H3>
-                        <Text style={styles.text}>Proin consectetur ac risus vel imperdiet.</Text>
+                      </View>
+                      <View style={styles.divider10} />
+                      <View style={styles.centerContent}>
+                        <Text style={styles.text}>Confirm your email related msg goes here</Text>
                       </View>
                       <View style={styles.divider20} />
-                      <Form bordered rounded regular style={styles.form}>
-                        <Field
-                          name="code"
-                          component={FormikInput}
-                          label="Activation Code"
-                          maxLength={6}
-                          value={values.code}
-                          autoCapitalize="none"
-                          autoCompleteType="off"
-                          autoCorrect={false}
-                          autoFocus
-                          enablesReturnKeyAutomatically
-                          keyboardType="number-pad"
-                        />
-                      </Form>
-                      <View style={styles.divider20} />
+                      <View style={styles.centerContent}>
+                        <Form bordered rounded regular style={styles.form}>
+                          <Field
+                            name="code"
+                            component={FormikInput}
+                            label="Activation Code"
+                            maxLength={6}
+                            value={values.code}
+                            autoCapitalize="none"
+                            autoCompleteType="off"
+                            autoCorrect={false}
+                            autoFocus
+                            enablesReturnKeyAutomatically
+                            keyboardType="number-pad"
+                          />
+                        </Form>
+                      </View>
                     </View>
-
                     <View style={styles.buttonFooter}>
-                      <Button warning small rounded transparent>
-                        <Text style={{ color: 'blue' }}>
-                          RESEND CONFIRMATION EMAIL - alert pops up, clicking on next spinner modal
-                          pops up
-                        </Text>
-                      </Button>
-                      <View style={styles.divider10} />
-                      <Button primary rounded block onPress={handleSubmit}>
+                      <Button
+                        rounded
+                        dark
+                        block
+                        onPress={handleSubmit}
+                        style={styles.buttonPrimary}
+                      >
                         <Text style={styles.button}>Next</Text>
                       </Button>
                       <View style={styles.divider20} />

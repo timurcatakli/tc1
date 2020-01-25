@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getIn } from 'formik';
 import { View, StyleSheet } from 'react-native';
-import { Input, Item, Icon, Text } from 'native-base';
+import { Input, Item, Icon, Text, Label } from 'native-base';
 
 const styles = StyleSheet.create({
   errorView: {
@@ -13,10 +13,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'red',
   },
+  label: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
 });
 
 const FormikInput = props => {
-  const { form, field } = props;
+  const { form, field, label } = props;
   const { name } = field;
   const error = getIn(form.errors, name);
   const isError = Boolean(error);
@@ -24,7 +25,9 @@ const FormikInput = props => {
 
   return (
     <View>
-      <Item error={isError}>
+      <Item error={isError} stackedLabel>
+        <Label style={styles.label}>{label}</Label>
+
         <Input onChangeText={handleChange(name)} onBlur={handleBlur(name)} {...props} />
         {isError && <Icon name="close-circle" />}
       </Item>
@@ -49,6 +52,7 @@ FormikInput.propTypes = {
     touched: PropTypes.shape({}).isRequired,
     values: PropTypes.shape({}).isRequired,
   }).isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default FormikInput;
