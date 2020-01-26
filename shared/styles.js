@@ -2,17 +2,17 @@ import { StyleSheet } from 'react-native';
 import config from 'shared/config';
 
 const customStyles = StyleSheet.create({
-  button: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
-  buttonFooter: {
-    width: '100%',
-    height: 90,
+  button: { color: 'white', fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
+  buttonView: {
     paddingLeft: config.style.paddingLeft,
     paddingRight: config.style.paddingRight,
+    width: '100%',
     justifyContent: 'flex-end',
   },
-  body: {
-    flex: 1,
-    width: '100%',
+  buttonRow: {
+    height: 110,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
   form: {
     width: '100%',

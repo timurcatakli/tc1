@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { Text, H3 } from 'native-base';
 import config from 'shared/config';
+import Divider from './Divider';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -18,6 +19,7 @@ const TitleAndText = ({ title, children }) => {
   return (
     <View style={styles.wrapper}>
       <H3>{title}</H3>
+      <Divider margin={4} />
       <Text>{children}</Text>
     </View>
   );

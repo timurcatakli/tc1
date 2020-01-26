@@ -8,9 +8,10 @@ const FlowImage = ({ image }) => {
     <View
       style={{
         alignItems: 'center',
+        height: 146,
       }}
     >
-      <Image source={config.images[image]} style={{ width: 160, height: 160, aspectRatio: 1.46 }} />
+      <Image source={config.images[image]} style={{ width: 100, height: 146, aspectRatio: 1.46 }} />
     </View>
   );
 };

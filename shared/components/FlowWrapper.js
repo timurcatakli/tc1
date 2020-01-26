@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { StyleProvider } from 'native-base';
+import { StyleProvider, Container } from 'native-base';
 import DismissKeyboard from './DismissKeyboard';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
-
-const styles = StyleSheet.create({
-  safeAreaView: { width: '100%', height: '100%' },
-});
 
 const FlowWrapper = ({ children }) => {
   return (
     <StyleProvider style={getTheme(platform)}>
       <DismissKeyboard>
-        <SafeAreaView style={styles.safeAreaView}>{children}</SafeAreaView>
+        <Container>{children}</Container>
       </DismissKeyboard>
     </StyleProvider>
   );

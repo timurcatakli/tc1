@@ -22,10 +22,6 @@ const styles = StyleSheet.create({
   logoView: {
     marginRight: 20,
     paddingTop: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
-    shadowRadius: 1,
   },
   titleView: { flex: 1 },
   separator: { backgroundColor: 'white', borderColor: '#5F6368', paddingLeft: 20 },
@@ -36,7 +32,7 @@ const BuildingsScr = () => {
   const { body } = customStyles;
 
   const handleOnPress = () => {
-    navigate('B');
+    navigate('PersonalInfo');
   };
 
   return (
