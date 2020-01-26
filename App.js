@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Text, ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
+import { RegisterScr, ActivationScr, BuildingsScr } from 'screens';
 import WelcomeScr from './screens/WelcomeScr';
 import AScr from './screens/AScr';
 import BScr from './screens/BScr';
-import { RegisterScr, ActivationScr, BuildingsScr } from './screens';
 import LoginScr from './screens/LoginScr';
 import HomeScr from './screens/HomeScr';
 import OtherScr from './screens/OtherScr';
@@ -55,49 +55,19 @@ const AuthStack = createStackNavigator(
   {
     Welcome: {
       screen: WelcomeScr,
-      navigationOptions: () => ({
-        headerShown: false,
-      }),
     },
     Register: {
       screen: RegisterScr,
-      navigationOptions: () => ({
-        title: 'Register',
-        headerBackTitle: '',
-        headerBackTitleStyle: {
-          fontFamily: 'Rubik-Medium',
-          fontWeight: 'bold',
-          textTransform: 'uppercase',
-          fontSize: 16,
-        },
-        headerTitleStyle: {
-          fontFamily: 'Rubik-Medium',
-          fontWeight: 'bold',
-          textTransform: 'uppercase',
-        },
-      }),
     },
     Activation: {
       screen: ActivationScr,
-      navigationOptions: () => ({
-        title: 'Activation',
-        headerBackTitle: '',
-      }),
     },
     Buildings: {
       screen: BuildingsScr,
-      navigationOptions: () => ({
-        title: 'Your Building',
-        headerBackTitle: '',
-      }),
     },
     B: BScr,
     Login: {
       screen: LoginScr,
-      navigationOptions: () => ({
-        title: 'Login',
-        headerBackTitle: '',
-      }),
     },
   },
   {

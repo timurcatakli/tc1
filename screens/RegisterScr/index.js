@@ -1,36 +1,35 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
-import { Text, Button, H3, Form } from 'native-base';
+import { Text, Button, Form } from 'native-base';
 import { Formik, Field } from 'formik';
-import { FormikInput } from '../../shared/formik';
-import { FlowWrapper, GoBack, Divider, TitleAndText } from '../../shared/components';
-
-const styles = StyleSheet.create({
-  body: {
-    width: '100%',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  form: { paddingLeft: 20, paddingRight: 30 },
-  button: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
-  buttonFooter: {
-    width: '100%',
-    height: 90,
-    paddingLeft: 30,
-    paddingRight: 30,
-    justifyContent: 'flex-end',
-  },
-});
+import {
+  FlowImage,
+  CustomModal,
+  FlowWrapper,
+  GoBack,
+  Divider,
+  TitleAndText,
+} from 'shared/components';
+import { FormikInput } from 'shared/formik';
+import customStyles from 'shared/styles';
 
 const RegisterScr = () => {
-  const { navigate, goBack } = useNavigation();
+  const { navigate } = useNavigation();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const { body, form, button, buttonFooter } = customStyles;
+
   return (
     <FlowWrapper>
+      <CustomModal open={isModalOpen}>PLEASE WAIT. CHECKING YOUR EMAIL.</CustomModal>
       <Formik
         initialValues={{ email: '' }}
         onSubmit={() => {
-          navigate('Activation');
+          setModalOpen(true);
+          setTimeout(() => {
+            setModalOpen(false);
+            navigate('Activation');
+          }, 500);
         }}
         validateOnBlur={false}
         validateOnChange={false}
@@ -39,13 +38,15 @@ const RegisterScr = () => {
         {({ handleSubmit, values }) => {
           return (
             <>
-              <GoBack goBack={goBack} />
-              <View style={styles.body}>
+              <GoBack />
+              <View style={body}>
+                <FlowImage image="register" />
+                <Divider margin={20} />
                 <TitleAndText title="Let's get started">
                   What is your corporate email address?
                 </TitleAndText>
                 <Divider margin={20} />
-                <Form bordered rounded regular style={styles.form}>
+                <Form bordered rounded regular style={form}>
                   <Field
                     name="email"
                     label="Corporate Email"
@@ -61,9 +62,9 @@ const RegisterScr = () => {
                 </Form>
               </View>
 
-              <View style={styles.buttonFooter}>
+              <View style={buttonFooter}>
                 <Button primary rounded block onPress={handleSubmit}>
-                  <Text style={styles.button}>Next</Text>
+                  <Text style={button}>Next</Text>
                 </Button>
                 <Divider margin={20} />
               </View>

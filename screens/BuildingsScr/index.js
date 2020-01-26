@@ -1,133 +1,95 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { View, SafeAreaView, Image, StyleSheet, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, ScrollView, Image, StyleSheet } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
-import {
-  Text,
-  Button,
-  StyleProvider,
-  H1,
-  H2,
-  H3,
-  Form,
-  Item,
-  Label,
-  Input,
-  ListItem,
-  Separator,
-  Body,
-  Right,
-} from 'native-base';
+import { H3, Text, Button, ListItem, Separator, Body, Right } from 'native-base';
+import { FlowWrapper, GoBack, Divider } from 'shared/components';
+import customStyles from 'shared/styles';
+import config from 'shared/config';
 import buildings from './mockData';
-import { DismissKeyboard } from '../../shared/components';
-import getTheme from '../../native-base-theme/components';
-import platform from '../../native-base-theme/variables/platform';
 
 const styles = StyleSheet.create({
-  wrapper: {
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  header: {
+    flexDirection: 'row',
     width: '100%',
+    height: 80,
+    paddingLeft: config.style.paddingLeft,
+    paddingRight: config.style.paddingRight,
   },
-  safeAreaView: { width: '100%', height: '100%' },
-  paddedView: { width: '100%', paddingLeft: 30, paddingRight: 30 },
-  paddedContent: {
-    width: '100%',
-    alignItems: 'center',
-    paddingLeft: 30,
-    paddingRight: 30,
+  logo: {
+    width: 80,
+    height: 80,
   },
-  divider20: { width: '100%', marginVertical: 20 },
-  divider10: { width: '100%', marginVertical: 10 },
-  h1: { fontFamily: 'Rubik-Medium', color: '#5F6368' },
-  centerContent: { width: '100%', alignItems: 'center' },
-  text: { fontFamily: 'Rubik-Regular', color: '#5F6368', textAlign: 'center' },
-  button: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
-  buttonPrimary: { backgroundColor: '#FF4C1D' },
-  buttonSecondary: { backgroundColor: '#5F6368' },
-  buttonFooter: {
-    width: '100%',
-    height: 140,
-    paddingLeft: 30,
-    paddingRight: 30,
-    justifyContent: 'flex-end',
+  logoView: {
+    marginRight: 20,
+    paddingTop: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 1,
   },
-  form: { width: '100%' },
+  titleView: { flex: 1 },
+  separator: { backgroundColor: 'white', borderColor: '#5F6368', paddingLeft: 20 },
 });
 
 const BuildingsScr = () => {
-  const { navigate, goBack } = useNavigation();
+  const { navigate } = useNavigation();
+  const { body } = customStyles;
 
   const handleOnPress = () => {
     navigate('B');
   };
 
   return (
-    <StyleProvider style={getTheme(platform)}>
-      <View style={styles.wrapper}>
-        <SafeAreaView style={styles.safeAreaView}>
-          <View style={styles.paddedView}>
-            <Button iconLeft transparent onPress={() => goBack()}>
-              <Ionicons name="md-arrow-round-back" size={32} color="#5F6368" />
-            </Button>
+    <FlowWrapper>
+      <GoBack />
+      <View style={body}>
+        <Divider margin={10} />
+        <View style={styles.header}>
+          <View style={styles.logoView}>
+            <Image source={require('assets/logos/splunk-logo.png')} style={styles.logo} />
           </View>
-          <View style={styles.paddedView}>
-            <H3 style={styles.h1}>PLACE</H3>
+          <View style={styles.titleView}>
+            <H3>Pick your building</H3>
+            <Divider margin={4} />
+            <Text>Proin consectetur ac risus vel imperdiet.</Text>
           </View>
-          <View style={styles.paddedContent}>
-            <View style={styles.divider20} />
-            <View>
-              <H3 style={styles.h1}>Pick your building</H3>
-            </View>
-            <View style={styles.divider10} />
-            <View style={styles.centerContent}>
-              <Text style={styles.text}>Pick your building related msg goes here</Text>
-            </View>
-            <View style={styles.divider10} />
-          </View>
-          <ScrollView>
-            {Object.keys(buildings).map(obj => {
-              const building = buildings[obj];
-              return (
-                <>
-                  <Separator bordered style={{ backgroundColor: 'white' }}>
-                    <Text>{building.label.toUpperCase()}</Text>
-                  </Separator>
+        </View>
 
-                  {building.data.map(location => {
-                    return (
-                      <ListItem key={location.id}>
-                        <Body>
-                          <Text>{location.name}</Text>
-                          <Text note numberOfLines={1}>
-                            {location.city}
-                          </Text>
-                        </Body>
-                        <Right>
-                          <Button transparent>
-                            <Text onPress={handleOnPress}>Select</Text>
-                          </Button>
-                        </Right>
-                      </ListItem>
-                    );
-                  })}
-                </>
-              );
-            })}
-          </ScrollView>
-        </SafeAreaView>
+        <Divider margin={10} />
+        <ScrollView>
+          {Object.keys(buildings).map(obj => {
+            const building = buildings[obj];
+            return (
+              <React.Fragment key={obj}>
+                <Separator bordered key={obj} style={styles.separator}>
+                  <Text>{building.label.toUpperCase()}</Text>
+                </Separator>
+
+                {building.data.map(location => {
+                  return (
+                    <ListItem key={location.id}>
+                      <Body>
+                        <Text>{location.name}</Text>
+                        <Text note numberOfLines={1}>
+                          {location.city}
+                        </Text>
+                      </Body>
+                      <Right>
+                        <Button transparent>
+                          <Text onPress={handleOnPress}>Select</Text>
+                        </Button>
+                      </Right>
+                    </ListItem>
+                  );
+                })}
+              </React.Fragment>
+            );
+          })}
+        </ScrollView>
       </View>
-    </StyleProvider>
+      <Divider margin={20} />
+    </FlowWrapper>
   );
-};
-
-BuildingsScr.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-    popToTop: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default BuildingsScr;

@@ -165,7 +165,6 @@ export default (variables /* : * */ = variable) => {
       shadowRadius: null,
       backgroundColor: 'transparent',
     },
-
     '.dark': {
       '.bordered': {
         ...darkCommon,
@@ -183,59 +182,51 @@ export default (variables /* : * */ = variable) => {
       ...darkCommon,
       backgroundColor: variables.brandLight,
     },
-
     '.primary': {
       '.bordered': {
         ...primaryCommon,
       },
       backgroundColor: variables.buttonPrimaryBg,
     },
-
     '.success': {
       '.bordered': {
         ...successCommon,
       },
       backgroundColor: variables.buttonSuccessBg,
     },
-
     '.info': {
       '.bordered': {
         ...infoCommon,
       },
       backgroundColor: variables.buttonInfoBg,
     },
-
     '.warning': {
       '.bordered': {
         ...warningCommon,
       },
       backgroundColor: variables.buttonWarningBg,
     },
-
     '.danger': {
       '.bordered': {
         ...dangerCommon,
       },
       backgroundColor: variables.buttonDangerBg,
     },
-
     '.block': {
       justifyContent: 'center',
       alignSelf: 'stretch',
     },
-
     '.full': {
       justifyContent: 'center',
       alignSelf: 'stretch',
       borderRadius: 0,
     },
-
     '.rounded': {
       borderRadius: variables.borderRadiusLarge,
     },
-
     '.transparent': {
       backgroundColor: 'transparent',
+      justifyContent: 'center',
       elevation: 0,
       shadowColor: null,
       shadowOffset: null,

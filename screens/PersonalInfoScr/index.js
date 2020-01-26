@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
 import { Text, Button, Form } from 'native-base';
 import { Formik, Field } from 'formik';
-import { FlowImage, FlowWrapper, GoBack, Divider, TitleAndText } from 'shared/components';
+import {
+  FlowImage,
+  CustomModal,
+  FlowWrapper,
+  GoBack,
+  Divider,
+  TitleAndText,
+} from 'shared/components';
 import { FormikInput } from 'shared/formik';
 import customStyles from 'shared/styles';
 
-const ActivationScr = () => {
+const PersonalInfoScr = () => {
   const { navigate } = useNavigation();
+  const [isModalOpen, setModalOpen] = useState(false);
   const { body, form, button, buttonFooter } = customStyles;
+
   return (
     <FlowWrapper>
+      <CustomModal open={isModalOpen}>PLEASE WAIT. CHECKING YOUR EMAIL.</CustomModal>
       <Formik
-        initialValues={{ code: '' }}
+        initialValues={{ email: '' }}
         onSubmit={() => {
-          navigate('Buildings');
+          setModalOpen(true);
+          setTimeout(() => {
+            setModalOpen(false);
+            navigate('Activation');
+          }, 500);
         }}
         validateOnBlur={false}
         validateOnChange={false}
@@ -26,34 +40,29 @@ const ActivationScr = () => {
             <>
               <GoBack />
               <View style={body}>
-                <FlowImage image="activation" />
+                <FlowImage image="register" />
                 <Divider margin={20} />
-
-                <TitleAndText title="Confirm your email">
-                  Proin consectetur ac risus vel imperdiet.
+                <TitleAndText title="Let's get started">
+                  What is your corporate email address?
                 </TitleAndText>
                 <Divider margin={20} />
                 <Form bordered rounded regular style={form}>
                   <Field
-                    name="code"
+                    name="email"
+                    label="Corporate Email"
                     component={FormikInput}
-                    label="Activation Code"
-                    maxLength={6}
-                    value={values.code}
+                    value={values.email}
                     autoCapitalize="none"
                     autoCompleteType="off"
                     autoCorrect={false}
+                    autoFocus={false}
                     enablesReturnKeyAutomatically
-                    keyboardType="number-pad"
+                    keyboardType="email-address"
                   />
                 </Form>
               </View>
 
               <View style={buttonFooter}>
-                <Button transparent>
-                  <Text style={{ color: 'blue' }}>RESEND CONFIRMATION EMAIL</Text>
-                </Button>
-                <Divider margin={10} />
                 <Button primary rounded block onPress={handleSubmit}>
                   <Text style={button}>Next</Text>
                 </Button>
@@ -67,4 +76,4 @@ const ActivationScr = () => {
   );
 };
 
-export default ActivationScr;
+export default PersonalInfoScr;

@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import { Text, H3 } from 'native-base';
+import config from 'shared/config';
 
 const styles = StyleSheet.create({
-  wrapper: { width: '100%', paddingLeft: 30, paddingRight: 30 },
+  wrapper: {
+    width: '100%',
+    paddingLeft: config.style.paddingLeft,
+    paddingRight: config.style.paddingRight,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const TitleAndText = ({ title, children }) => {
