@@ -3,6 +3,10 @@ import config from 'shared/config';
 
 const customStyles = StyleSheet.create({
   button: { color: 'white', fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
+  bodyView: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   buttonView: {
     paddingLeft: config.style.paddingLeft,
     paddingRight: config.style.paddingRight,

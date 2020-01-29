@@ -10,23 +10,25 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: config.style.paddingLeft,
     paddingRight: config.style.paddingRight,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  title: {
+    letterSpacing: -1,
+    textTransform: 'uppercase',
   },
 });
 
-const TitleAndText = ({ title, children }) => {
+const TitleAndText = ({ title, text }) => {
   return (
     <View style={styles.wrapper}>
-      <H3>{title}</H3>
+      <H3 style={styles.title}>{title}</H3>
       <Divider margin={4} />
-      <Text>{children}</Text>
+      <Text>{text}</Text>
     </View>
   );
 };
 
 TitleAndText.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

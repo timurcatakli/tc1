@@ -18,8 +18,8 @@ export default {
   platform,
 
   // Custom Colors
-  customHeadingColor: '#5F6368',
-  customTextColor: '#5F6368',
+  customHeadingColor: 'black',
+  customTextColor: 'black',
 
   // Accordion
   accordionBorderColor: '#d3d3d3',
@@ -132,7 +132,7 @@ export default {
   checkboxTextShadowRadius: 0,
 
   // Color
-  brandPrimary: platform === PLATFORM.IOS ? '#FF4C1D' : '#3F51B5',
+  brandPrimary: platform === PLATFORM.IOS ? '#FF5C3E' : '#3F51B5',
   brandInfo: '#62B1F6',
   brandSuccess: '#5cb85c',
   brandDanger: '#d9534f',
@@ -225,7 +225,7 @@ export default {
 
   // InputGroup
   inputFontSize: 17,
-  inputBorderColor: '#D9D5DC',
+  inputBorderColor: 'black',
   inputSuccessBorderColor: '#2b8339',
   inputErrorBorderColor: '#ed2f2f',
   inputHeightBase: 50,

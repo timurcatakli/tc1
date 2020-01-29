@@ -8,7 +8,7 @@ import customStyles from 'shared/styles';
 import { Formik, Field } from 'formik';
 import { FormikInput } from 'shared/formik';
 
-const RegisterScr = () => {
+const ForgotPasswordScr = () => {
   const { button, buttonView, buttonRow, form } = customStyles;
   const { navigate } = useNavigation();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const RegisterScr = () => {
         setTimeout(() => {
           setModalOpen(false);
           navigate('Activation');
-        }, 500);
+        }, 3000);
       }}
       validateOnBlur={false}
       validateOnChange={false}
@@ -35,15 +35,15 @@ const RegisterScr = () => {
             <GoBack />
             <Grid>
               <FlowHero
-                image="register"
-                title="Let's get started"
-                text="What is your corporate email address?"
+                image="login"
+                title="Forgot Password?"
+                text="Enter your work email and we will send a temporary password to your account."
               />
               <Row>
                 <Form bordered rounded regular style={form}>
                   <Field
                     name="email"
-                    label="Corporate Email"
+                    label="Work Email"
                     component={FormikInput}
                     value={values.email}
                     autoCapitalize="none"
@@ -57,8 +57,8 @@ const RegisterScr = () => {
               </Row>
               <Row style={buttonRow}>
                 <View style={buttonView}>
-                  <Button primary rounded block onPress={handleSubmit}>
-                    <Text style={button}>Register</Text>
+                  <Button dark rounded block onPress={handleSubmit}>
+                    <Text style={button}>Send Email</Text>
                   </Button>
                   <Divider margin={20} />
                 </View>
@@ -71,4 +71,4 @@ const RegisterScr = () => {
   );
 };
 
-export default RegisterScr;
+export default ForgotPasswordScr;

@@ -1,6 +1,11 @@
 import React from 'react';
-import { View, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, ScrollView, Image, StyleSheet, TouchableHighlight } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import { useNavigation } from 'react-navigation-hooks';
+import { Ionicons } from '@expo/vector-icons';
 import { H3, Text, Button, ListItem, Separator, Body, Right } from 'native-base';
 import { FlowWrapper, GoBack, Divider } from 'shared/components';
 import customStyles from 'shared/styles';
@@ -16,15 +21,36 @@ const styles = StyleSheet.create({
     paddingRight: config.style.paddingRight,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: wp('20%'),
+    height: wp('20%'),
   },
   logoView: {
     marginRight: 20,
     paddingTop: 2,
   },
   titleView: { flex: 1 },
-  separator: { backgroundColor: 'white', borderColor: '#5F6368', paddingLeft: 20 },
+  separator: {
+    backgroundColor: '#5F6368',
+    borderColor: '#5F6368',
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  group: { color: 'white' },
+  building: {
+    marginBottom: 8,
+    marginTop: 8,
+    height: 60,
+    flexDirection: 'row',
+    width: '100%',
+    paddingLeft: config.style.paddingLeft,
+    paddingRight: config.style.paddingRight,
+  },
+  buildingLeft: { flex: 3, justifyContent: 'center' },
+  buildingLeftTop: { fontSize: 18 },
+  buildingLeftBottom: { fontFamily: 'Rubik-Medium', color: '#005D68' },
+  buildingRight: { flex: 1, justifyContent: 'center' },
 });
 
 const BuildingsScr = () => {
@@ -51,31 +77,36 @@ const BuildingsScr = () => {
           </View>
         </View>
 
-        <Divider margin={10} />
+        <Divider margin={hp('4%')} />
         <ScrollView>
           {Object.keys(buildings).map(obj => {
             const building = buildings[obj];
             return (
               <React.Fragment key={obj}>
-                <Separator bordered key={obj} style={styles.separator}>
-                  <Text>{building.label.toUpperCase()}</Text>
-                </Separator>
+                <View key={obj} style={styles.separator}>
+                  <Text style={styles.group}>{building.label.toUpperCase()}</Text>
+                </View>
 
                 {building.data.map(location => {
                   return (
-                    <ListItem key={location.id}>
-                      <Body>
-                        <Text>{location.name}</Text>
-                        <Text note numberOfLines={1}>
-                          {location.city}
-                        </Text>
-                      </Body>
-                      <Right>
-                        <Button transparent>
-                          <Text onPress={handleOnPress}>Select</Text>
-                        </Button>
-                      </Right>
-                    </ListItem>
+                    <TouchableHighlight underlayColor="#dadde0" onPress={handleOnPress}>
+                      <View key={location.id} style={styles.building}>
+                        <View style={styles.buildingLeft}>
+                          <Text style={styles.buildingLeftTop}>{location.name}</Text>
+                          <Text style={styles.buildingLeftBottom}>{location.city}</Text>
+                        </View>
+                        <View style={styles.buildingRight}>
+                          <Button transparent>
+                            <Ionicons
+                              name="md-arrow-forward"
+                              size={32}
+                              color="#5F6368"
+                              onPress={handleOnPress}
+                            />
+                          </Button>
+                        </View>
+                      </View>
+                    </TouchableHighlight>
                   );
                 })}
               </React.Fragment>

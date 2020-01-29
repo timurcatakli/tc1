@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   image: { width: 240, height: 240 },
   subheader: { textAlign: 'center', textTransform: 'uppercase' },
-  title: { fontFamily: 'Rubik-Medium', color: '#5F6368', textAlign: 'center' },
+  title: { color: '#5F6368', textAlign: 'center' },
   description: { textAlign: 'center' },
 });
 
@@ -32,8 +32,6 @@ const WelcomeScr = () => {
           <View style={styles.body}>
             <Image source={require('assets/images/welcome-scr.png')} style={styles.image} />
             <Divider margin={20} />
-            <Text style={styles.subheader}>welcome to</Text>
-            <Divider margin={2} />
             <H1 style={styles.title}>CRCL</H1>
             <Divider margin={10} />
             <Text style={styles.description}>

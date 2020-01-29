@@ -4,6 +4,8 @@ import variable from '../variables/platform';
 
 export default (variables /* : * */ = variable) => {
   const h1Theme = {
+    fontFamily: 'Rubik-Light',
+    textTransform: 'uppercase',
     color: variables.textColor,
     fontSize: variables.fontSizeH1,
     lineHeight: variables.lineHeightH1,

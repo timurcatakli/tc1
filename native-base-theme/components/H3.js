@@ -6,7 +6,8 @@ export default (variables /* : * */ = variable) => {
   const h3Theme = {
     fontSize: variables.fontSizeH3,
     lineHeight: variables.lineHeightH3,
-    fontFamily: 'Rubik-Medium',
+    fontFamily: 'Rubik-Light',
+    textTransform: 'uppercase',
     color: variables.customHeadingColor,
   };
 

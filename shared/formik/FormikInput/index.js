@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'red',
   },
-  label: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase' },
+  label: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase', color: 'black' },
 });
 
 const FormikInput = props => {
@@ -27,7 +27,6 @@ const FormikInput = props => {
     <View>
       <Item error={isError} stackedLabel>
         <Label style={styles.label}>{label}</Label>
-
         <Input onChangeText={handleChange(name)} onBlur={handleBlur(name)} {...props} />
         {isError && <Icon name="close-circle" />}
       </Item>

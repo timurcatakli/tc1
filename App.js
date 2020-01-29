@@ -4,7 +4,14 @@ import React, { useState } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { Text, ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
-import { RegisterScr, ActivationScr, BuildingsScr, PersonalInfoScr, LoginScr } from 'screens';
+import {
+  RegisterScr,
+  ActivationScr,
+  BuildingsScr,
+  PersonalInfoScr,
+  LoginScr,
+  ForgotPasswordScr,
+} from 'screens';
 import WelcomeScr from './screens/WelcomeScr';
 import BScr from './screens/BScr';
 import HomeScr from './screens/HomeScr';
@@ -66,9 +73,11 @@ const AuthStack = createStackNavigator(
     PersonalInfo: {
       screen: PersonalInfoScr,
     },
-    B: BScr,
     Login: {
       screen: LoginScr,
+    },
+    ForgotPassword: {
+      screen: ForgotPasswordScr,
     },
   },
   {
