@@ -14,8 +14,8 @@ const customStyles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   buttonRow: {
-    height: 110,
-    justifyContent: 'flex-end',
+    height: 80,
+    justifyContent: 'center',
     alignItems: 'flex-end',
   },
   form: {

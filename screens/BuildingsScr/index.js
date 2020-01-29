@@ -6,7 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useNavigation } from 'react-navigation-hooks';
 import { Ionicons } from '@expo/vector-icons';
-import { H3, Text, Button, ListItem, Separator, Body, Right } from 'native-base';
+import { H3, Text, Button } from 'native-base';
 import { FlowWrapper, GoBack, Divider } from 'shared/components';
 import customStyles from 'shared/styles';
 import config from 'shared/config';
@@ -89,7 +89,11 @@ const BuildingsScr = () => {
 
                 {building.data.map(location => {
                   return (
-                    <TouchableHighlight underlayColor="#dadde0" onPress={handleOnPress}>
+                    <TouchableHighlight
+                      underlayColor="#dadde0"
+                      onPress={handleOnPress}
+                      key={location.id}
+                    >
                       <View key={location.id} style={styles.building}>
                         <View style={styles.buildingLeft}>
                           <Text style={styles.buildingLeftTop}>{location.name}</Text>

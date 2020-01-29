@@ -29,9 +29,6 @@ const GoBack = () => {
             <Ionicons name="md-arrow-round-back" size={32} color="#5F6368" />
           </Button>
         </View>
-        <View>
-          <Image source={require('assets/images/logo.png')} style={styles.image} />
-        </View>
       </View>
     </Header>
   );

@@ -1,10 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import { ImageBackground } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleProvider, Container } from 'native-base';
 import DismissKeyboard from './DismissKeyboard';

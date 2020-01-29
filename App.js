@@ -81,7 +81,6 @@ const AuthStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Welcome',
     defaultNavigationOptions: {
       headerTitleStyle: {},
       headerShown: false,
