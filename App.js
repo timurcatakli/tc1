@@ -2,7 +2,6 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { Text, ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import {
   RegisterScr,
@@ -11,11 +10,9 @@ import {
   PersonalInfoScr,
   LoginScr,
   ForgotPasswordScr,
+  HomeScr,
+  WelcomeScr,
 } from 'screens';
-import WelcomeScr from './screens/WelcomeScr';
-import BScr from './screens/BScr';
-import HomeScr from './screens/HomeScr';
-import OtherScr from './screens/OtherScr';
 
 function handleLoadingError(error) {
   console.warn(error);
@@ -55,7 +52,19 @@ const AppScr = () => {
   return <AppContainer />;
 };
 
-const AppStack = createStackNavigator({ Home: HomeScr, Other: OtherScr });
+const AppStack = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScr,
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerTitleStyle: {},
+      headerShown: false,
+    },
+  }
+);
 const AuthStack = createStackNavigator(
   {
     Welcome: {
@@ -91,7 +100,7 @@ const AuthStack = createStackNavigator(
 const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
-      Welcome: WelcomeScr,
+      Welcome: HomeScr,
       App: AppStack,
       Auth: AuthStack,
     },

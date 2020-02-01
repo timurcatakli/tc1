@@ -6,6 +6,9 @@ import TitleAndText from './TitleAndText';
 import CustomModal from './CustomModal';
 import FlowImage from './FlowImage';
 import FlowHero from './FlowHero';
+import ProductCard from './ProductCard';
+import FeedWrapper from './FeedWrapper';
+import FeedHeader from './FeedHeader';
 
 export {
   DismissKeyboard,
@@ -16,4 +19,7 @@ export {
   CustomModal,
   FlowImage,
   FlowHero,
+  ProductCard,
+  FeedWrapper,
+  FeedHeader,
 };

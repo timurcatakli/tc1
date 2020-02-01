@@ -19,7 +19,7 @@ const LoginScr = () => {
         setModalOpen(true);
         setTimeout(() => {
           setModalOpen(false);
-          navigate('Activation');
+          navigate('Home');
         }, 500);
       }}
       validateOnBlur={false}
@@ -29,8 +29,6 @@ const LoginScr = () => {
       {({ handleSubmit, values }) => {
         return (
           <FlowWrapper>
-            <CustomModal open={isModalOpen}>PLEASE WAIT...</CustomModal>
-
             <GoBack />
             <View style={bodyView}>
               <TitleAndText title="Let's login" text="Lorem ipsum dolor sit amet." />
