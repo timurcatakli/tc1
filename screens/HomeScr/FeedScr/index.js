@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Image } from 'react-native';
 import { Text } from 'native-base';
-import { FeedHeader, FeedWrapper, ProductCard } from 'shared/components';
-import Splunk from 'assets/logos/splunk-logo.png';
+import { FeedHeader, FeedWrapper } from 'shared/components';
+import ListingController from './ListingController';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +16,8 @@ const FeedScr = () => {
   const [data, setData] = useState([]);
 
   const makeRemoteRequest = () => {
-    const url = 'http://localhost:3000/listings';
+    // const url = 'http://localhost:3000/listings';
+    const url = 'https://my.api.mockaroo.com/products.json?key=4a9b0470';
     /* eslint-disable-next-line */
     fetch(url)
       .then(res => res.json())
@@ -43,9 +44,7 @@ const FeedScr = () => {
         ListEmptyComponent={() => <Text>List is empty</Text>}
         numColumns={2}
         initialNumToRender={4}
-        renderItem={({ item }) => (
-          <ProductCard id={item.id} price={item.price} title={item.title} image={item.image} />
-        )}
+        renderItem={({ item }) => <ListingController item={item} />}
         keyExtractor={item => item.id}
       />
     </FeedWrapper>

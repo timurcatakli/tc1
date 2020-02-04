@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Text, Badge } from 'native-base';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import config from 'shared/config';
@@ -42,11 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 6,
   },
-  badgeView: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    margin: 10,
-  },
 });
 // style={{ width: 100, height: 146, aspectRatio: 1.46 }}
 // 2850 x 1900
@@ -56,17 +51,16 @@ const ProductCard = ({ item }) => {
     <TouchableOpacity>
       <View style={styles.container}>
         <View style={styles.imageWrapper}>
-          <ImageBackground
+          <Image
             style={{ width: wp('50%') - padding, flex: 1 }}
             source={{ uri: image }}
             resizeMode="cover"
-          >
-            <View style={styles.badgeView}>
-              <Badge>
-                <Text>SR 500</Text>
-              </Badge>
-            </View>
-          </ImageBackground>
+          />
+          <View>
+            <Badge>
+              <Text>SR 500</Text>
+            </Badge>
+          </View>
         </View>
         <View style={styles.infoWrapper}>
           <Text style={styles.infoPrice}>{price}</Text>

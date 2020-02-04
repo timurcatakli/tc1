@@ -7,6 +7,7 @@ const config = {
     primaryColor: '#FF5C3E',
     secondaryColor: 'black',
     gray: '#545454',
+    darkGreen: '#005D68',
     gradientTop: '#5CD89F',
     gradientBottom: '#FFD36E',
   },

@@ -7,6 +7,7 @@ import CustomModal from './CustomModal';
 import FlowImage from './FlowImage';
 import FlowHero from './FlowHero';
 import ProductCard from './ProductCard';
+import ListingCard from './ListingCard';
 import FeedWrapper from './FeedWrapper';
 import FeedHeader from './FeedHeader';
 
@@ -20,6 +21,7 @@ export {
   FlowImage,
   FlowHero,
   ProductCard,
+  ListingCard,
   FeedWrapper,
   FeedHeader,
 };

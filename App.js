@@ -100,7 +100,7 @@ const AuthStack = createStackNavigator(
 const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
-      Welcome: HomeScr,
+      Welcome: WelcomeScr,
       App: AppStack,
       Auth: AuthStack,
     },
