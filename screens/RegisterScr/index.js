@@ -6,6 +6,7 @@ import { FlowWrapper, TitleAndText, GoBack, Divider, CustomModal } from 'shared/
 import customStyles from 'shared/styles';
 import { Formik, Field } from 'formik';
 import { FormikInput } from 'shared/formik';
+import ValidationSchema from './ValidationSchema';
 
 const RegisterScr = () => {
   const { button, buttonView, buttonRow, form, bodyView } = customStyles;
@@ -15,6 +16,7 @@ const RegisterScr = () => {
   return (
     <Formik
       initialValues={{ email: '' }}
+      validationSchema={ValidationSchema}
       onSubmit={() => {
         setModalOpen(true);
         setTimeout(() => {

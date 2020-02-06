@@ -4,31 +4,26 @@ import { getIn } from 'formik';
 import { View, StyleSheet } from 'react-native';
 import { Input, Item, Icon, Text, Label } from 'native-base';
 
-const styles = StyleSheet.create({
-  errorView: {
-    paddingLeft: 16,
-    paddingTop: 10,
-  },
-  errorText: {
-    fontSize: 14,
-    color: 'red',
-  },
-  label: { fontFamily: 'Rubik-Medium', textTransform: 'uppercase', color: 'black' },
-});
+const styles = StyleSheet.create({});
 
 const FormikInput = props => {
   const { form, field, label } = props;
   const { name } = field;
   const error = getIn(form.errors, name);
-  const isError = Boolean(error);
+  const isError = true;
+  // const isError = Boolean(error);
   const { handleChange, handleBlur } = form;
 
   return (
     <View>
-      <Item error={isError} stackedLabel>
-        <Label style={styles.label}>{label}</Label>
+      <Item
+        error={isError}
+        stackedLabel
+        style={{ backgroundColor: 'aqua', justifyContent: 'center', alignItems: 'center' }}
+      >
+        <Label style={(styles.label, { backgroundColor: 'brown' })}>{label}</Label>
         <Input onChangeText={handleChange(name)} onBlur={handleBlur(name)} {...props} />
-        {isError && <Icon name="close-circle" />}
+        {isError && <Icon name="close-circle" style={{ backgroundColor: 'gold' }} />}
       </Item>
       {isError && (
         <View style={styles.errorView}>
