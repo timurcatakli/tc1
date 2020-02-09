@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Image, StyleSheet, SafeAreaView } from 'react-native';
 import { Button, Text, H1 } from 'native-base';
 import {
@@ -9,7 +9,6 @@ import { useNavigation } from 'react-navigation-hooks';
 import { FlowWrapper, Divider } from 'shared/components';
 import customStyles from 'shared/styles';
 import config from 'shared/config';
-import { firestore } from '../firebase';
 
 const styles = StyleSheet.create({
   hero: {
@@ -34,26 +33,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const WelcomeScr = () => {
-  const { button, buttonView } = customStyles;
+const LoginRegisterScr = () => {
+  const { viewFooterWrapper, buttonLabel } = customStyles;
   const { navigate } = useNavigation();
 
-  useEffect(() => {
-    const docRef = firestore.collection('companies').doc('splunk.com');
-    docRef
-      .get()
-      .then(function(doc) {
-        if (doc.exists) {
-          console.log('Document data:', doc.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-        }
-      })
-      .catch(function(error) {
-        console.log('Error getting document:', error);
-      });
-  }, []);
   return (
     <FlowWrapper>
       <SafeAreaView style={styles.safeAreaView}>
@@ -70,13 +53,13 @@ const WelcomeScr = () => {
             fringilla elit ut congue pharetra.
           </Text>
         </View>
-        <View style={buttonView}>
+        <View style={viewFooterWrapper}>
           <Button primary rounded block onPress={() => navigate('Register')}>
-            <Text style={button}>Register</Text>
+            <Text style={buttonLabel}>Register</Text>
           </Button>
           <Divider margin={10} />
           <Button rounded dark block onPress={() => navigate('Login')}>
-            <Text style={button}>Log in</Text>
+            <Text style={buttonLabel}>Log in</Text>
           </Button>
           <Divider margin={10} />
         </View>
@@ -85,4 +68,4 @@ const WelcomeScr = () => {
   );
 };
 
-export default WelcomeScr;
+export default LoginRegisterScr;

@@ -1,18 +1,12 @@
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
+import app from 'shared/firebase';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import {
-  RegisterScr,
-  ActivationScr,
-  BuildingsScr,
-  PersonalInfoScr,
-  LoginScr,
-  ForgotPasswordScr,
-  HomeScr,
-  WelcomeScr,
-} from 'screens';
+import AuthNavigation from '/navigation/AuthNavigation';
+import HomeNavigation from '/navigation/HomeNavigation';
+import EmailNotVerifiedNavigation from '/navigation/EmailNotVerifiedNavigation';
+import AppContext from 'shared/providers/AppContext';
 
 function handleLoadingError(error) {
   console.warn(error);
@@ -38,7 +32,21 @@ async function loadResourcesAsync() {
 
 const AppScr = () => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  if (!isLoadingComplete) {
+  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [isAuthenticationReady, setAuthenticationReady] = useState(false);
+  const [isEmailVerified, setEmailVerified] = useState(false);
+
+  const onAuthStateChanged = async user => {
+    if (user) {
+      setEmailVerified(user.emailVerified);
+    }
+    setAuthenticationReady(true);
+    setAuthenticated(!!user);
+  };
+
+  app.auth().onAuthStateChanged(onAuthStateChanged);
+
+  if (!isLoadingComplete || !isAuthenticationReady) {
     return (
       <AppLoading
         startAsync={loadResourcesAsync}
@@ -49,65 +57,38 @@ const AppScr = () => {
       />
     );
   }
-  return <AppContainer />;
+  if (isAuthenticated) {
+    return isEmailVerified ? (
+      <HomeContainer />
+    ) : (
+      <AppContext.Provider value={{}}>
+        <EmailNotVerifiedContainer />
+      </AppContext.Provider>
+    );
+  }
+  return <AuthContainer />;
 };
 
-const AppStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScr,
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerTitleStyle: {},
-      headerShown: false,
-    },
-  }
-);
-const AuthStack = createStackNavigator(
-  {
-    Welcome: {
-      screen: WelcomeScr,
-    },
-    Register: {
-      screen: RegisterScr,
-    },
-    Activation: {
-      screen: ActivationScr,
-    },
-    Buildings: {
-      screen: BuildingsScr,
-    },
-    PersonalInfo: {
-      screen: PersonalInfoScr,
-    },
-    Login: {
-      screen: LoginScr,
-    },
-    ForgotPassword: {
-      screen: ForgotPasswordScr,
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerTitleStyle: {},
-      headerShown: false,
-    },
-  }
-);
-
-const AppContainer = createAppContainer(
+const HomeContainer = createAppContainer(
   createSwitchNavigator(
     {
-      Welcome: WelcomeScr,
-      App: AppStack,
-      Auth: AuthStack,
+      Home: HomeNavigation,
     },
     {
-      initialRouteName: 'Welcome',
+      initialRouteName: 'Home',
     }
   )
+);
+const AuthContainer = createAppContainer(
+  createSwitchNavigator({
+    Home: AuthNavigation,
+  })
+);
+
+const EmailNotVerifiedContainer = createAppContainer(
+  createSwitchNavigator({
+    Home: EmailNotVerifiedNavigation,
+  })
 );
 
 export default AppScr;

@@ -1,11 +1,24 @@
 import { AppLoading } from 'expo';
-import PropTypes from 'prop-types';
 import * as Font from 'expo-font';
 import React, { useState } from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import WelcomeScr from './screens/WelcomeScr';
-import RegisterScr from './screens/RegisterScr';
+import {
+  DomainFoundScr,
+  AuthenticationScr,
+  BuildingsScr,
+  ErrorScr,
+  ForgotPasswordScr,
+  HomeScr,
+  LoginScr,
+  PersonalInfoScr,
+  RegisterScr,
+  LoginRegisterScr,
+} from 'screens';
+
+function handleLoadingError(error) {
+  console.warn(error);
+}
 
 async function loadResourcesAsync() {
   await Promise.all([
@@ -25,14 +38,10 @@ async function loadResourcesAsync() {
   ]);
 }
 
-function handleLoadingError(error) {
-  console.warn(error);
-}
-
-const App = props => {
+const AppScr = () => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
+  const [isAuthenticated, setAuthenticated] = useState(false);
+  if (!isLoadingComplete) {
     return (
       <AppLoading
         startAsync={loadResourcesAsync}
@@ -40,31 +49,73 @@ const App = props => {
         onFinish={() => {
           setLoadingComplete(true);
         }}
-      >
-        <AppContainer />
-      </AppLoading>
+      />
     );
   }
-  return <WelcomeScr />;
+  return <AppContainer />;
 };
 
-const AppNavigator = createStackNavigator(
+const AppStack = createStackNavigator(
   {
-    Welcome: WelcomeScr,
-    Register: RegisterScr,
+    Home: {
+      screen: HomeScr,
+    },
   },
   {
-    initialRouteName: 'Welcome',
+    defaultNavigationOptions: {
+      headerTitleStyle: {},
+      headerShown: false,
+    },
   }
 );
-const AppContainer = createAppContainer(AppNavigator);
+const AuthStack = createStackNavigator(
+  {
+    Authentication: {
+      screen: AuthenticationScr,
+    },
+    LoginRegister: {
+      screen: LoginRegisterScr,
+    },
+    Register: {
+      screen: RegisterScr,
+    },
+    DomainFound: {
+      screen: DomainFoundScr,
+    },
+    Error: {
+      screen: ErrorScr,
+    },
+    Buildings: {
+      screen: BuildingsScr,
+    },
+    PersonalInfo: {
+      screen: PersonalInfoScr,
+    },
+    Login: {
+      screen: LoginScr,
+    },
+    ForgotPassword: {
+      screen: ForgotPasswordScr,
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerTitleStyle: {},
+      headerShown: false,
+    },
+  }
+);
+const AppContainer = createAppContainer(
+  createSwitchNavigator(
+    {
+      Welcome: AuthenticationScr,
+      App: AppStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'Welcome',
+    }
+  )
+);
 
-App.propTypes = {
-  skipLoadingScreen: PropTypes.bool,
-};
-
-App.defaultProps = {
-  skipLoadingScreen: false,
-};
-
-export default App;
+export default AppScr;

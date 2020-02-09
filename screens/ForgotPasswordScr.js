@@ -20,7 +20,7 @@ const ForgotPasswordScr = () => {
         setModalOpen(true);
         setTimeout(() => {
           setModalOpen(false);
-          navigate('Activation');
+          navigate('DomainFound');
         }, 3000);
       }}
       validateOnBlur={false}

@@ -1,19 +1,21 @@
-import RegisterScr from './RegisterScr';
-import ActivationScr from './ActivationScr';
-import BuildingsScr from './BuildingsScr';
-import PersonalInfoScr from './PersonalInfoScr';
-import LoginScr from './LoginScr';
+import DomainFoundScr from './DomainFoundScr';
+import ErrorScr from './ErrorScr';
 import ForgotPasswordScr from './ForgotPasswordScr';
 import HomeScr from './HomeScr';
-import WelcomeScr from './WelcomeScr';
+import LoginScr from './LoginScr';
+import PersonalInfoScr from './PersonalInfoScr';
+import RegisterScr from './RegisterScr';
+import LoginRegisterScr from './LoginRegisterScr';
+import PickBuildingScr from './PickBuildingScr';
 
 export {
-  RegisterScr,
-  ActivationScr,
-  BuildingsScr,
-  PersonalInfoScr,
-  LoginScr,
+  DomainFoundScr,
+  ErrorScr,
   ForgotPasswordScr,
   HomeScr,
-  WelcomeScr,
+  LoginScr,
+  PersonalInfoScr,
+  PickBuildingScr,
+  RegisterScr,
+  LoginRegisterScr,
 };

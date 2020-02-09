@@ -1,11 +1,25 @@
-POSTS
-Listing - Sell something
-Classified - Say something
+## Firebase Functions
+
+Firebase functions are located in a separate folder called `fb_functions`
+
+### Deploying functions to firebase
+
+`firebase deploy --project crcl-41309`
+
+### Running Firebase Emulator for Local Tests & Deployment
+
+`$ firebase emulators:start --project crcl-41309`
+
+### Deploy Only Functions
+
+`$ firebase deploy --project crcl-41309 --only functions`
+
+### ---
 
 Splunk Logo
 List buildings
 List date
-
+List how many users
 `VirtualizedList: You have a large list that is slow to update - make sure your renderItem function renders components that follow React performance best practices like PureComponent, shouldComponentUpdate, etc. Object {`
 
 ```

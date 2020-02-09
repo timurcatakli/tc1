@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { View, StyleSheet } from 'react-native';
 import { Text, H3 } from 'native-base';
 import config from 'shared/config';
@@ -17,10 +18,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const TitleAndText = ({ title, text }) => {
+const TitleAndText = ({ title, text, error }) => {
   return (
     <View style={styles.wrapper}>
-      <H3 style={styles.title}>{title}</H3>
+      {error && <Ionicons name="ios-close-circle-outline" size={70} color="red" />}
+      <H3 style={(styles.title, { color: error ? 'red' : 'black' })}>{title}</H3>
       <Divider margin={4} />
       <Text>{text}</Text>
     </View>
@@ -30,8 +32,11 @@ const TitleAndText = ({ title, text }) => {
 TitleAndText.propTypes = {
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  error: PropTypes.bool,
 };
 
-TitleAndText.defaultProps = {};
+TitleAndText.defaultProps = {
+  error: false,
+};
 
 export default TitleAndText;
