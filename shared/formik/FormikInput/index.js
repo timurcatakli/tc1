@@ -2,31 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getIn } from 'formik';
 import { View, StyleSheet } from 'react-native';
-import { Input, Item, Icon, Text, Label } from 'native-base';
+import { Input, Item, Text, Label } from 'native-base';
+import config from 'shared/config.js';
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  errorTextWrapper: {
+    marginLeft: 16,
+    marginTop: 4,
+  },
+  errorText: {
+    fontFamily: 'Rubik-Medium',
+    textTransform: 'uppercase',
+    fontSize: 12,
+    color: config.colors.errorColor,
+  },
+  labelText: {
+    fontFamily: 'Rubik-Medium',
+    textTransform: 'uppercase',
+    color: 'black',
+  },
+});
 
 const FormikInput = props => {
   const { form, field, label } = props;
   const { name } = field;
   const error = getIn(form.errors, name);
-  const isError = true;
-  // const isError = Boolean(error);
+  const isError = Boolean(error);
   const { handleChange, handleBlur } = form;
 
   return (
     <View>
-      <Item
-        error={isError}
-        stackedLabel
-        style={{ backgroundColor: 'aqua', justifyContent: 'center', alignItems: 'center' }}
-      >
-        <Label style={(styles.label, { backgroundColor: 'brown' })}>{label}</Label>
+      <Item error={isError} stackedLabel>
+        <Label style={styles.labelText}>{label}</Label>
         <Input onChangeText={handleChange(name)} onBlur={handleBlur(name)} {...props} />
-        {isError && <Icon name="close-circle" style={{ backgroundColor: 'gold' }} />}
       </Item>
       {isError && (
-        <View style={styles.errorView}>
+        <View style={styles.errorTextWrapper}>
           <Text style={styles.errorText}>{error}</Text>
         </View>
       )}
