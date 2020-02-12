@@ -10,6 +10,7 @@ import GoBack from './GoBack';
 import ListingCard from './ListingCard';
 import ProductCard from './ProductCard';
 import TitleAndText from './TitleAndText';
+import Loader from './Loader';
 
 export {
   CustomModal,
@@ -24,4 +25,5 @@ export {
   ListingCard,
   ProductCard,
   TitleAndText,
+  Loader,
 };

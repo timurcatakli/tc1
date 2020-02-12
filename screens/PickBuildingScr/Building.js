@@ -44,11 +44,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-Light',
     textTransform: 'uppercase',
     color: config.colors.gray,
+    fontSize: 12,
   },
 });
 
 const Building = ({ data }) => {
-  const { id, name, city, state, country } = data;
+  const { id, label, city, state, country } = data;
   return (
     <TouchableHighlight
       underlayColor={config.colors.lightGray}
@@ -58,7 +59,7 @@ const Building = ({ data }) => {
     >
       <View style={styles.cardViewWrapper}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.streetLabel}>{name}</Text>
+          <Text style={styles.streetLabel}>{label}</Text>
           <Divider margin={2} />
           <Text style={styles.countryLabel}>
             {city}, {state && `${state}, `}
@@ -75,8 +76,8 @@ const Building = ({ data }) => {
 
 Building.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     state: PropTypes.string,
     country: PropTypes.string.isRequired,

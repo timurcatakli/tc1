@@ -4,14 +4,26 @@ export const getBuildingsByDomain = async domain => {
   const snapshot = await app
     .firestore()
     .collection('buildings')
-    .where('company_id', '==', domain)
+    .where('company', '==', domain)
     .get();
 
   const data = snapshot.docs.map(doc => {
-    return doc.data();
+    return {
+      id: doc.id,
+      ...doc.data(),
+    };
   });
+
   if (snapshot.empty) return [];
-  return data;
+
+  const sortedData = data.sort((a, b) => {
+    if (a.country > b.country) {
+      return -1;
+    }
+    return 0;
+  });
+
+  return sortedData;
 };
 
 export const logout = () => {

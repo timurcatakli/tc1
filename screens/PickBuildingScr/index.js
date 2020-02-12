@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'native-base';
-import app from 'shared/firebase';
 import { FlowWrapper, TitleAndText, Divider } from 'shared/components';
 import customStyles from 'shared/styles';
-import AppContext from 'shared/providers/AppContext';
 import { logout } from 'shared/queries/';
 import Buildings from './Buildings';
 
 const PickBuildingScr = () => {
-  console.log('PickBuildingScr =>', useContext(AppContext));
+  // console.log('PickBuildingScr =>', useContext(AppContext));
   const {
     viewContentFooterWrapper,
     viewContentWrapper,
@@ -21,7 +19,7 @@ const PickBuildingScr = () => {
     <FlowWrapper>
       <Divider margin={10} />
       <View style={viewContentFooterWrapper}>
-        <View style={viewContentWrapper}>
+        <View style={[viewContentWrapper, { justifyContent: 'flex-start' }]}>
           <Divider margin={20} />
           <TitleAndText
             title="PICK YOUR BUILDING"
